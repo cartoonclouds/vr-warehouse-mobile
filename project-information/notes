@@ -1,0 +1,31 @@
+
+
+vr-warehouse-mobile project
+***************************
+
+auto-focus/capture barcode input
+	https://stackoverflow.com/questions/43981445/javascript-catch-input-when-no-input-has-focus
+	https://stackoverflow.com/questions/51885326/barcode-scanner-produces-a-keypress-event-only-when-the-user-is-on-an-input-bo?noredirect=1&lq=1
+	https://stackoverflow.com/questions/21633537/javascript-how-to-read-a-hand-held-barcode-scanner-best
+	https://laracasts.com/discuss/channels/general-discussion/detect-barcode-scanner-javascript
+	https://github.com/noomerzx/vue-barcode-scanner
+
+
+
+:theme="telTheme" entertext="send" @press="press"
+
+
+
+http://element.eleme.io/#/en-US/component/progress
+
+
+https://www.npmjs.com/package/vue-toasted
+
+
+QR Scanner
+https://github.com/schmich/instascan
+
+
+
+https://stackoverflow.com/questions/7439570/how-do-you-log-all-events-fired-by-an-element-in-jquery
+https://briangrinstead.com/blog/chrome-developer-tools-monitorevents/
