@@ -12,10 +12,21 @@
         <main>
             <div class="pickorder-header">
 
-                <barcode-scan-input
-                        v-model="barcode"
-                        @scanned="submitScan"
-                ></barcode-scan-input>
+                <div class="barcode-input-header">
+                    <barcode-scan-input
+                            v-model="barcode"
+                            @scanned="submitScan"
+                            class="barcode-input"
+                    ></barcode-scan-input>
+
+
+                    <div class="quantity-scanned">
+                        <div class="text-quantity">
+                            {{ scannedQuantity }}
+                        </div>
+                        <div class="text-scanned">Last Scan</div>
+                    </div>
+                </div>
 
                 <div class="progress">
                     <div
@@ -52,12 +63,16 @@
                         role="button"
                         @dblclick="openProductDetail(idx)"
                     >
-                        <div class="col-3">{{ product.barcode }}</div>
+                        <div class="col-3">
+                            <span @click="barcode = product.barcode" style="border-bottom: 1px dashed #000;">
+                                {{ product.barcode }}
+                            </span>
+                        </div>
                         <div class="col-3"><small>{{ product.name }}</small></div>
                         <div class="col-3 text-center">{{ product.location}}</div>
                         <div class="col-3 text-right">
-                            <span class="badge badge-pill badge-primary">
-                                0 / {{ product.stock_required }}
+                            <span class="badge badge-pill" :class="'badge-'+ ((product.quantity_scanned||0) <= product.stock_required ? 'primary' : 'warning')">
+                                {{ product.quantity_scanned || 0 }} / {{ product.stock_required }}
                             </span>
                             <div style="font-size:18px">({{ product.SOH }} SOH)</div>
                         </div>
@@ -146,29 +161,50 @@
             };
         },
         computed: {
-
+            /*store() {
+                return this.$store.getters['Stores/get'](this.storeId);
+            },*/
+            products() {
+                return this.$store.getters['PickingOrders/getProductsById'](this.id);
+            }
+            /*...mapGetters({
+                products: 'PickingOrders/getProductsById',
+            }),*/
         },
         data() {
             return {
-                products: [],
                 barcode: null,
+                scannedQuantity: 0,
             };
         },
         methods: {
             ...mapGetters({
-                get: 'PickingOrders/get'
+                get: 'PickingOrders/get',
             }),
             ...mapActions({
-                load: 'PickingOrders/load'
+                load: 'PickingOrders/load',
+                updateScanned: 'PickingOrders/updateQuantityScanned'
             }),
             ...mapActions({
                 loadStore: 'Stores/load'
             }),
             submitScan(barcode) {
 
-                let productHeader = document.getElementsByClassName('product-' + barcode)[0];
+                this.scannedQuantity = 1;
 
-                productHeader.classList.add('scanned');
+                //let productHeader = document.getElementsByClassName('product-' + barcode)[0];
+
+                //productHeader.classList.add('scanned');
+
+                this.updateScanned({
+                    id: this.id,
+                    barcode,
+                    quantity: this.scannedQuantity
+                }).then(() => {
+
+                    this.barcode = null;
+
+                });
 
             },
             openProductDetail(accordianIdx) {
@@ -191,31 +227,31 @@
 
         mounted() {
 
-            this.load(this.id).then((pickingOrder) => {
-
-                this.products = pickingOrder.products;
-
-            });
-
+            this.load(this.id);
 
         },
         // global hooks http://patrickwho.me/learn-vue-router-navigation-guards-quickly/
         // https://stackoverflow.com/questions/50506470/vue-router-pass-object-as-props
         beforeRouteEnter (to, from, next) {
 
-            next(vm => {
+            if(!to.params.store) { // load the store if not coming into picking order via link
 
-                if(!vm.store) { // load the store if not coming into picking order via link
+                $store.dispatch('Stores/load', (to.params.id)).then((store) => {
 
-                    vm.loadStore(to.params.id).then((store) => {
-                        console.log(store)
+                    to.params.store = store;
 
-                        to.params.store = store;
-
+                    next({
+                        name: to.name,
+                        params: to.params
                     });
-                }
 
-            })
+                });
+
+
+            } else {
+                next();
+            }
+
         }
 
     };
@@ -244,7 +280,7 @@
     .pickorder-header {
         position: sticky;
         top: 64px;
-        z-index: 999;
+        z-index: 888;
         background-color: #FFF;
         padding-bottom: 8px;
     }
@@ -293,5 +329,36 @@
         height: 2px;
         background-color: #eee;
         border-radius: 0.25rem;
+    }
+
+
+
+    .barcode-input-header {
+        display: flex;
+    }
+
+    .barcode-input {
+        flex-basis: 90%;
+    }
+
+    .quantity-scanned {
+        flex-basis: 10%;
+        padding: 12px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .quantity-scanned .text-quantity {
+        font-size: 50px;
+        line-height: 0.8em;
+    }
+
+    .quantity-scanned .text-scanned {
+        font-size: 0.7em;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+
     }
 </style>

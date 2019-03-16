@@ -1,5 +1,5 @@
 <template>
-    <transition name="modal" v-if="showModal">
+    <transition name="modal">
         <div class="modal-mask">
             <div class="modal-wrapper">
                 <div class="modal-container">
@@ -10,12 +10,12 @@
                     </div>
 
                     <div class="modal-body">
-                        <slot name="body"></slot>
+                        <slot></slot>
                     </div>
 
                     <div class="modal-footer">
                         <slot name="footer">
-                            <button class="modal-default-button" @click="showModal = false" > <!-- @click="$emit('close')"-->
+                            <button class="modal-default-button" @click="$emit('close')" > <!-- @click="$emit('close')"-->
                                 OK
                             </button>
                         </slot>
@@ -31,14 +31,14 @@
 
     export default {
         name: "Modal",
-        props: ['show'],
+        props: [],
         data() {
             return {
-                showModal: false
+
             }
         },
         mounted() {
-            this.showModal = this.show;
+
         }
     }
 </script>

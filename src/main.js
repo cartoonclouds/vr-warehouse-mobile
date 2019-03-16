@@ -2,15 +2,17 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
 import Meta from "vue-meta";
+import PortalVue from 'portal-vue';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import IndexMobile from "./layouts/IndexMobile.vue";
+import IndexMobile from "./layouts/Index.vue";
 import router from "./router/router";
 import store from "./state/store";
 
 
 // attach plugins
 Vue.use(Meta);
+Vue.use(PortalVue);
 Vue.use(VueAxios, axios);
 
 
@@ -53,7 +55,9 @@ console.log(initialState)
 //import tool from './plugins/Vue-DevTools';
 
 
-new Vue({
+window.$store = store;
+
+window.Vue = new Vue({
   //mixins: [tool],
   router,
   store,

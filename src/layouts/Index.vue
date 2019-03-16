@@ -6,6 +6,8 @@
     <router-view />
 
     <!-- <footer-bar /> -->
+
+    <portal-target name="modals"></portal-target>
   </div>
 </template>
 

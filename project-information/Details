@@ -1,0 +1,29 @@
+
+
+VR2-489 Refactor New Purchase/Sale page
+***
+
+
+Sale Type:
+* Order
+* Quote
+* Credit Note
+* Invoice
+* Supplier Credit
+* Supplier Invoice
+* Return
+
+
+1. Choose 'Sale Type'
+2. Choose 'Store'/'Supplier'
+  2.1 If 'Store' has children - "Would you like to create a bulk order for the child stores or a single order for this store?"
+3. 'Sell/Order/Invoice' as \list FCs\
+
+
+
+* Saving capability
+  ** Save to CSV
+  ** Save as-you-go
+
+* Importing capability
+  ** Import from CSV

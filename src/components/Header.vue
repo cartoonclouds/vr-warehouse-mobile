@@ -19,7 +19,7 @@ export default {
     height: 64px;
     width: 100%;
     position: sticky;
-    z-index: 888;;
+    z-index: 777;;
     top: 0;
     padding: 10px 60px 10px 60px;
 
