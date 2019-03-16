@@ -1,9 +1,13 @@
 <template>
     <div class="page">
         <header-mobile>
-            {{ store.store_name }} - {{ store.address.state }} - {{ store.address.postcode }}
+            <span v-if="storeId && store">{{ store.store_name }} - {{ store.address.state }} - {{ store.address.postcode }}</span>
             <div class="estTime">
-                Estimated Picking Time: 30min 25sec
+                <!--Estimated Picking Time:-->
+                <span v-if="pickingOrder" style="margin-left:8px;">
+                    {{ pickingOrder.estimated_time | formatDuration }}
+                    <div style="font-size:0.75em;line-height:0.8em;">Estimated completion: {{ pickingOrder.estimated_time | addMilliseconds | formatDateTime }}</div>
+                </span>
             </div>
         </header-mobile>
 
@@ -22,7 +26,7 @@
 
                     <div class="quantity-scanned">
                         <div class="text-quantity">
-                            {{ scannedQuantity }}
+                            {{ lastScanned && lastScanned.quantity_scanned || 0 }}
                         </div>
                         <div class="text-scanned">Last Scan</div>
                     </div>
@@ -74,7 +78,7 @@
                             <span class="badge badge-pill" :class="'badge-'+ ((product.quantity_scanned||0) <= product.stock_required ? 'primary' : 'warning')">
                                 {{ product.quantity_scanned || 0 }} / {{ product.stock_required }}
                             </span>
-                            <div style="font-size:18px">({{ product.SOH }} SOH)</div>
+                            <div style="font-size:0.7em">({{ product.SOH }} SOH)</div>
                         </div>
                     </div>
                     <div
@@ -151,7 +155,7 @@
 
     export default {
         name: 'pick-order',
-        props: ['id', 'store'],
+        props: ['id'],
         components: {
             BarcodeScanInput,
         },
@@ -161,20 +165,21 @@
             };
         },
         computed: {
-            /*store() {
+            pickingOrder() {
+                return this.$store.getters['PickingOrders/get'](this.id);
+            },
+            store() {
                 return this.$store.getters['Stores/get'](this.storeId);
-            },*/
+            },
             products() {
                 return this.$store.getters['PickingOrders/getProductsById'](this.id);
             }
-            /*...mapGetters({
-                products: 'PickingOrders/getProductsById',
-            }),*/
         },
         data() {
             return {
+                storeId: '',
                 barcode: null,
-                scannedQuantity: 0,
+                lastScanned: null,
             };
         },
         methods: {
@@ -200,7 +205,9 @@
                     id: this.id,
                     barcode,
                     quantity: this.scannedQuantity
-                }).then(() => {
+                }).then((scannedProduct) => {
+
+                    this.lastScanned = scannedProduct;
 
                     this.barcode = null;
 
@@ -227,50 +234,36 @@
 
         mounted() {
 
-            this.load(this.id);
+            this.load(this.id).then((pickingOrder) => {
+
+                this.storeId = pickingOrder.store_id;
+
+                this.loadStore(pickingOrder.store_id);
+
+            });
 
         },
-        // global hooks http://patrickwho.me/learn-vue-router-navigation-guards-quickly/
-        // https://stackoverflow.com/questions/50506470/vue-router-pass-object-as-props
-        beforeRouteEnter (to, from, next) {
-
-            if(!to.params.store) { // load the store if not coming into picking order via link
-
-                $store.dispatch('Stores/load', (to.params.id)).then((store) => {
-
-                    to.params.store = store;
-
-                    next({
-                        name: to.name,
-                        params: to.params
-                    });
-
-                });
-
-
-            } else {
-                next();
-            }
-
+        filters: {
+            formatDuration(ms) { return moment.utc(ms).format('h [hours] mm [minutes] ss [seconds]'); },
+            addMilliseconds(ms) { return moment().add(ms, 'ms'); }, // returns unix datetime
+            formatDateTime(datetime) { return moment(datetime).format('HH:mm:ss, Do MMM'); }
         }
-
     };
 </script>
 
 <style scoped>
-    main {
-        padding: 0 60px;
-    }
-
     header {
         color: #fff;
-        font-size: 32px;
+        font-size: 26px;
     }
 
     header .estTime {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: initial;
         margin-left: auto;
+        display: flex;
+        position: relative;
+        top: -.15em;
     }
 
     h2 {
@@ -289,7 +282,7 @@
         cursor: pointer;
         padding: 18px;
         padding-right: 26px;
-        font-size: 26px;
+        font-size: 18px;
         -webkit-user-select: none;
         user-select: none;
         background-color: #FFF;
@@ -321,7 +314,7 @@
     }
 
     main h2 {
-        font-size: 32px;
+        font-size: 28px;
     }
 
 
@@ -351,8 +344,8 @@
     }
 
     .quantity-scanned .text-quantity {
-        font-size: 50px;
-        line-height: 0.8em;
+        font-size: 2.7em;
+        line-height: 0.9em;
     }
 
     .quantity-scanned .text-scanned {

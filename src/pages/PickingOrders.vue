@@ -42,7 +42,7 @@
 
             <div id="pickingOrderList">
                 <router-link v-for="store in stores" :key="store.id" class="pickingOrder"
-                             :to="{ name: 'pick-order', params: { id: '244322', store } }">
+                             :to="{ name: 'pick-order', params: { id: '244322' } }">
                     <h5>{{ store.store_name }} - {{ store.address.state }} - {{ store.address.postcode }}</h5>
                     {{ store.order_count}} Order
                 </router-link>
@@ -77,10 +77,6 @@
 </script>
 
 <style scoped>
-    main {
-        padding: 0 60px;
-    }
-
     #pickingSummary {
         font-size: 14px;
         color: #777;

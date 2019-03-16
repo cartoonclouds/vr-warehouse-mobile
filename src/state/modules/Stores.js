@@ -1,11 +1,4 @@
 
-
-const _stores = [
-    {id: 24422, store_name: 'Chris Tudhope\'s Store', address: { state: 'SA', postcode: 5000 }, order_count: 2},
-    {id: 345345, store_name: 'John\'s Store', address: { state: 'SA', postcode: 5000 }, order_count: 1},
-    {id: 23423, store_name: 'Joe\'s Store', address: { state: 'SA', postcode: 5000 }, order_count: 5},
-];
-
 export default {
 
     namespaced: true,

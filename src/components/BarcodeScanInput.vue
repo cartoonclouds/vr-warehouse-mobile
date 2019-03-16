@@ -66,13 +66,13 @@
     .scan-input {
         display: flex;
         box-sizing: border-box;
-        padding: 12px 0;
+        padding: 14px 0;
     }
 
     input {
         width: 100%;
-        padding: 0 30px;
-        font-size: 30px;
+        padding: 0 28px;
+        font-size: 28px;
         letter-spacing: 0.2em;
     }
 
@@ -82,7 +82,7 @@
 
 
     .barcode-input .input-group-text {
-        font-size: 2.5rem;
+        font-size: 2rem;
         cursor: pointer;
     }
 </style>

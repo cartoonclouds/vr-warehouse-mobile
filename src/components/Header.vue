@@ -21,10 +21,10 @@ export default {
     position: sticky;
     z-index: 777;;
     top: 0;
-    padding: 10px 60px 10px 60px;
+    padding: 10px 60px 0 60px;
 
     display: flex;
-    align-items: baseline;
+    align-items: end;
 
     border-bottom: 2px solid #ddd;
 

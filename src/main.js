@@ -5,10 +5,10 @@ import Meta from "vue-meta";
 import PortalVue from 'portal-vue';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import IndexMobile from "./layouts/Index.vue";
+import Index from "./layouts/Index.vue";
 import router from "./router/router";
 import store from "./state/store";
-
+import moment from "moment";
 
 // attach plugins
 Vue.use(Meta);
@@ -54,14 +54,14 @@ console.log(initialState)
 
 //import tool from './plugins/Vue-DevTools';
 
-
+window.moment = moment;
 window.$store = store;
 
 window.Vue = new Vue({
   //mixins: [tool],
   router,
   store,
-  render: h => h(IndexMobile),
+  render: h => h(Index),
 }).$mount("#app");
 
 //  defaultTitle: 'VR Warehouse Mobile',

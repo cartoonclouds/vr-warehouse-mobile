@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ResponsiveNav from "../components/ResponsiveNav";
+import ResponsiveNav from "../components/ResponsiveNavSmall";
 import FooterBar from "../components/Footer";
 
 export default {
@@ -52,6 +52,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+}
+
+main {
+  padding: 0 20px 0 70px;
 }
 
 </style>
