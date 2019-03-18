@@ -1,0 +1,39 @@
+.circle {
+  width: 16em;
+  height: 16em;
+  border-radius: 50%;
+  background: linear-gradient(36deg, #272b66 42.34%, transparent 42.34%) 0 0;
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
+}
+
+<div class="circle"></div>
+https://stackoverflow.com/questions/21205652/how-to-draw-a-circle-sector-in-css
+
+Actually, some geometry calculation is needed here. But Let me explain that in short:
+
+Considering the 4 quarters in the circle, the angle of linear gradient can be calculated in each quarter. And the background-position determines the quarter:
+
+Q I   =>  100% 0
+Q II  =>  100% 100%
+Q III =>  0    100%
+Q IV  =>  0    0
+
+The only thing that remains is where the used color-stop has came from:
+
+Consider a 30-angled piece of circle in the 1st quarter.
+
+As talented Ana Tudor has explained in her great article, If we take the length of the width of the square to be a, then the length of the half diagonal is going to be a*sqrt(2)/2.
+
+If we take the gradient degree to be g the difference between two gradient and diagonal angles to be d then the length of color-stop can be calculated by:
+
+a*sin(g) / (a*sqrt(2)/2 * cos(d))
+= sin(g) / (sqrt(2)  /2 * cos(d)) 
+
+So, in this case we have sin(30deg) / (sqrt(2)*cos((45-30)deg)) = 0.3660, and the % value for the color stop is 36.60%
+
+Since our shape is in the 1st quarter, the background-position is 100% 0.
+
+and the linear-gradient would be like this:
+
+linear-gradient(-30deg, orange 36.60%, transparent 36.60%) 100% 0;

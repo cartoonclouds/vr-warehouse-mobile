@@ -1,0 +1,286 @@
+[ Clouds https://codepen.io/pBun/pen/sHCzt	http://cssdeck.com/labs/animated-clouds-background-pure-css3 ]
+VueJS/SPA + Vuex, VueRouter
+***************************
+
+https://github.com/vuejs/vue-router/tree/dev/examples
+	https://github.com/vuejs/vue-router/tree/dev/examples/lazy-loading
+	https://github.com/vuejs/vue-router/tree/dev/examples/named-views (to seperate sections of pages)
+	http://router.vuejs.org/en/advanced/navigation-guards.html	https://github.com/vuejs/vue-router/blob/dev/examples/navigation-guards/app.js
+	(possibly use the guard hooks to check if off/online)
+
+
+* Keyboard	https://github.com/viclm/numeric-keyboard
+
+* Mobile Orientation
+	https://github.com/adi518/mobile-orientation
+	https://codepen.io/CTNieves/pen/akqVGp
+	https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation
+	https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model/Managing_screen_orientation	
+	https://github.com/intel/generic-sensor-demos/tree/master/orientation-phone
+	https://codepen.io/davidgilbertson/pen/bjXPvO
+
+* Device Detect https://www.npmjs.com/package/mobile-device-detect
+
+
+* Persistant State https://github.com/robinvdvleuten/vuex-persistedstate		https://github.com/js-cookie/js-cookie
+
+
+* Simple notifer https://github.com/BinarCode/vue-notifyjs
+
+* Turn Vue object into stateful	https://github.com/aarondfrancis/vue-model
+
+* Accordian	
+	https://css-tricks.com/using-css-transitions-auto-dimensions/
+	https://codepen.io/dicson/pen/xOKYrN	
+	https://codepen.io/ahmadbassamemran/pen/BPbVPe
+
+
+* Highlighting Scanned Item https://daneden.github.io/animate.css/ Pulse twice or so?	
+	with a slide up? https://codepen.io/Colir/pen/wBWxwL
+	or slide/whoosh off the screen? (slidingExit)
+	https://codepen.io/vajkri/pen/wGXLRK
+	https://codepen.io/jonbrennecke/pen/xbojLg
+	https://codepen.io/CTNieves/pen/pbLGZW
+	https://gist.github.com/alexgibson/836983/59beab111b5c1f87183cf3aff12a92e405ff60e0
+	https://codepen.io/whitley40/pen/PPrmxv
+	https://codepen.io/Harrisonbro/pen/EtBlG
+	!! https://codepen.io/dicson/pen/eGZOYq		https://codemyui.com/barcode-scan-line-animation-pure-css/
+	https://codepen.io/arximughal/pen/LEpoOJ
+
+
+* Page direction/wizard/path
+	https://forum.vuejs.org/t/vue-navigate-to-next-child-route/37283/3
+
+
+* Ability to scan anytime	https://css-tricks.com/capturing-all-events/
+
+
+* JS Barcode Scanner	https://serratus.github.io/quaggaJS/examples/live_w_locator.html
+
+Component library / Examples
+=============================
+https://bitsrc.io/	https://docs.bitsrc.io/docs/documenting-components.html	
+https://madewithvuejs.com/ui-components
+https://github.com/vuejs/vue-hackernews-2.0/tree/master/src
+
+https://uiv.wxsm.space/affix < possibly use affix keep important info in view
+
+https://madewithvuejs.com/templates
+https://www.pages.xyz/
+
+Animation generators
+	http://animista.net/play/basic/shadow-drop
+	http://bouncejs.com
+	http://cssanimate.com/	
+	https://coveloping.com/tools/css-animation-generator	
+
+
+
+Interesting APIs
+* Battery Status API https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API	http://devdoc.net/web/developer.mozilla.org/en-US/docs/WebAPI/Battery_Status.html	https://hacks.mozilla.org/2012/02/using-the-battery-api-part-of-webapi/
+* Push API	https://developer.mozilla.org/en-US/docs/Web/API/Push_API	https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API
+* Geolocation API	https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API	https://github.com/yTakkar/Get-User-Location
+* !! Proximity Events https://developer.mozilla.org/en-US/docs/Web/API/Proximity_Events
+* !! Vibration API https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API	https://codepen.io/search/pens?q=vibrate&page=1&order=popularity&depth=everything&show_forks=on
+* Network Information API https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
+* Page Vsibility https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API	https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus
+
+
+Service Workers / Offline
+*************************
+Servicec Workers backgroun sync
+https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
+!!!!! https://developers.google.com/web/tools/workbox/
+!!! https://serviceworke.rs/
+!!! https://jakearchibald.com/2014/offline-cookbook/
+!!! https://www.smashingmagazine.com/2016/02/making-a-service-worker
+!! https://developers.google.com/web/ilt/pwa/live-data-in-the-service-worker
+   https://developers.google.com/web/ilt/pwa/introduction-to-service-worker
+   https://developers.google.com/web/ilt/pwa/offline-quickstart		https://www.youtube.com/watch?v=zw35jKRSIlo
+   https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications		https://www.youtube.com/watch?v=ggUY0Q4f5ok (along with a simple UI Kris can use to send push notification to specific user - lunch time, you're needed, go back to work!)
+https://una.im/save-offline/
+https://css-tricks.com/pop-from-top-notification/
+
+https://html.spec.whatwg.org/multipage/offline.html
+
+
+https://davidwalsh.name/service-worker-claim
+https://chrisruppel.com/blog/service-worker-offline-content/
+https://adactio.com/journal/13821
+https://remysharp.com/2016/03/22/the-copy--paste-guide-to-your-first-service-worker
+https://jakearchibald.github.io/isserviceworkerready/
+https://wicg.github.io/BackgroundSync/spec/
+
+ServiceWorkers boilerplate https://github.com/yTakkar/Fun-With-ServiceWorker
+
+Boilerplate for SW/Offline
+	https://gist.github.com/dgrijuela/38cde675b70ed097dbbe
+	https://codepen.io/chriscoyier/project/editor/ZPvNRA
+
+https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events
+https://johnresig.com/blog/offline-events/
+
+
+https://webcache.googleusercontent.com/search?q=cache:a_JOj_tmtr0J:https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/User_notifications/Notifying_users_via_the_Notification_and_Vibration+&cd=1&hl=en&ct=clnk&gl=au&client=firefox-b-ab
+
+
+&&&&&&&&&& MAY NOT RELOAD &&&&&&&&
+https://www.google.com/search?client=firefox-b-ab&q=play+nativescript
+https://codepen.io/chriscoyier
+https://codesandbox.io/s/m7poro2kqx
+https://codepen.io/pen/tour/welcome/start
+nativescript-vue.org
+https://www.google.com/search?client=firefox-b-ab&q=vue+sidekick
+vuedevtools
+&&&&&&&
+
+
+Vue+ Tutorials
+====================
+
+https://scotch.io/tutorials/vue-authentication-and-route-handling-using-vue-router
+https://serversideup.net/building-page-layout-vue-router/
+
+
+https://www.appgyver.com/ [mobile app builder]
+
+
+[[ Progressive Web Apps course  https://www.youtube.com/watch?v=17kGWJOuL-A&list=PLNYkxOF6rcIAdnzEsWkg0KpMn2WJwMBmN ]]
+
+!! https://www.nngroup.com/articles/animation-usability/
+https://www.nngroup.com/articles/childrens-websites-usability-issues/
+https://www.nngroup.com/articles/ten-usability-heuristics/
+https://www.nngroup.com/articles/which-ux-research-methods/
+https://www.nngroup.com/articles/design-thinking/		https://www.nngroup.com/videos/design-thinking/
+https://www.nngroup.com/articles/ux-quiz/
+https://www.nngroup.com/articles/customer-journey-mapping/
+!!! https://www.nngroup.com/articles/ux-mapping-cheat-sheet/
+!!! https://www.nngroup.com/articles/ux-research-cheat-sheet/
+
+
+
+https://www.nngroup.com/topic/analytics-and-metrics/
+https://www.nngroup.com/topic/applications/
+https://www.nngroup.com/topic/behavior-patterns/
+https://www.nngroup.com/topic/branding/
+https://www.nngroup.com/topic/ux-design-process/
+https://www.nngroup.com/topic/navigation/
+https://www.nngroup.com/topic/psychology-and-ux/
+https://www.nngroup.com/topic/visual-design/
+https://www.nngroup.com/articles/#videos
+https://www.nngroup.com/topic/design-patterns/
+
+https://kazuhikoarase.github.io/qrcode-generator/js/demo/	
+https://github.com/crossjs/JsPatterns-ES6	
+https://github.com/robinvdvleuten/DesignPatternsPHP
+https://github.com/leonardomso/33-js-concepts
+https://frontendchecklist.io/
+https://frontenddesignchecklist.io
+https://github.com/thedaviddias/Resources-Front-End-Beginner
+https://github.com/thedaviddias/styleguide-bookmarks
+
+https://github.com/trekhleb/javascript-algorithms
+https://github.com/leonardomso/free-programming-books
+https://github.com/jamiebuilds/itsy-bitsy-data-structures	
+https://github.com/FagnerMartinsBrack/jquery.maskedinput
+
+https://github.com/typekit/webfontloader
+https://github.com/paulirish/browser-compat-data
+https://github.com/paulirish/break-on-access
+
+https://github.com/thedaviddias/project-guidelines
+https://github.com/leonardomso/design-blocks	https://www.froala.com/design-blocks/webpage-builder
+
+
+native drag&drop boilerplate https://github.com/yTakkar/AJAX-PHP-Drag-And-Drop-Processing
+
+mutation observers boilerplate https://github.com/yTakkar/fun-wuth-mutation-observer (auto-save for warehouse map)
+	intersection observers https://github.com/yTakkar/Fun-With-Intersection-Observer/tree/master/src
+
+better way to place html template for custom elements https://ayushgp.github.io/html-web-components-using-vanilla-js/
+https://www.grapecity.com/en/blogs/web-components-introduction-creating-custom-html-elements-2018
+https://www.html5rocks.com/en/tutorials/webcomponents/customelements/
+
+
+
+
+
+https://uxplanet.org/popular-web-animation-techniques-a6a467309028
+
+!!! https://itnext.io/how-not-to-vue-18f16fe620b5
+
+When re-writing rostering app https://vuejsexamples.com/a-course-scheduling-helper-using-vue-js/
+					https://vuejsexamples.com/invoice-system-for-freelancers-as-a-single-page-application-built-with-vue-js/
+
+
+https://www.octalsoftware.com/blog/tips-for-picking-a-perfect-app-name
+http://2ality.com/2017/05/regexp-named-capture-groups.html
+https://github.com/yTakkar?tab=repositories
+
+VueJS Mixins/Plugins
+********************
+https://vuejs.org/v2/guide/mixins.html
+https://levelup.gitconnected.com/how-to-use-mixins-in-vuejs-a40cc3fb4428
+https://www.pusher.com/tutorials/vuejs-mixins-custom-directives/
+https://vueschool.io/articles/vuejs-tutorials/reusing-logic-in-vue-components/
+https://www.qcode.in/practical-use-of-components-and-mixins-in-vue-js/
+https://forum.vuejs.org/t/mixin-and-objects-in-options/7823
+https://forum.vuejs.org/t/non-reactive-variables-in-single-file-components/28049
+https://forum.vuejs.org/t/how-to-add-custom-block-content-to-component-options/14133
+https://forum.vuejs.org/t/mixin-and-templates/5053
+https://medium.com/@denny.headrick/mixins-and-plugins-in-vuejs-ecee9b37d1bd
+https://murze.be/using-global-mixins-in-vuejs
+https://scotch.io/tutorials/extending-vue-components-with-mixins
+
+https://freefrontend.com/
+http://html5doctor.com/outlines/
+======================
+Unrelated Snippets/Code
+
+Make element visible at point during scroll	https://github.com/somewebmedia/hc-sticky
+Neat tooltip https://github.com/yTakkar/Handy-Tooltip	https://codepen.io/ahmadbassamemran/pen/mOMwEG
+On scroll background changes shape	https://codepen.io/electerious/pen/zrKKZX
+======================
+
+
+
+
+General Warehouse/Logistics/Shipping
+*********************************
+https://www.youtube.com/watch?v=epi2TRJqPS0
+
+! https://picqer.com/en/features/picking-shipping [great screenshots, try free trail https://picqer.com/en/signup]
+!!! https://www.newcastlesys.com/blog/bid/348476/order-picking-methods-and-the-simplest-ways-to-minimize-walking-infographic
+!!! https://www.newcastlesys.com/blog/bid/329992/7-Excellent-Methods-to-Improve-Picking-and-Packing-Efficiencies
+http://www.cisco-eagle.com/blog/2018/12/04/ways-to-increase-order-picking-speed/	
+http://www.cisco-eagle.com/material-handling-systems/conveyor_systems/design
+https://shiphero.com/blog/optimize-warehouse-layout/
+http://www.cisco-eagle.com/blog/2013/01/31/warehousing-hidden-productivity-gremlins/
+https://shiphero.com/ecommerce-order-management/
+
+https://www.youtube.com/watch?v=4TRFJt3OCFM		https://www.youtube.com/watch?v=5cJQWIdL_ng (good techy lingo words)
+https://www.youtube.com/watch?v=3rIp9cAbv6A
+https://www.youtube.com/watch?v=fsPkrUfSi_c + his other videos
+https://www.smartclient.com/smartclient/showcase/?id=showcaseApp
+https://www.octalsoftware.com/blog/inventory-management-software-development-cost-and-features
+https://www.octalsoftware.com/blog/category/how-to-guides
+
+-- Possibly an answer to boxes being left behind/in wrong cage/etc - after packing stick on beacon/RFID and before things leave warehouse, scan entire cage
+-- RFID all incoming items (OR upon picking instead of scanning the item(s) RFID stickers are attached) and once complete walk passed scanners which pick up all items, marking off product & qty and showing how much remaining to collect
+
+https://www.octalsoftware.com/blog/what-is-ibeacon-technology-and-how-are-businesses-benefiting
+https://www.octalsoftware.com.sg/blog/give-boost-to-the-roi-of-your-business-using-ibeacon-apps/
+https://blog.beaconstac.com/2015/02/beacons-in-the-enterprise-7-ways-to-make-the-most-of-it/
+https://blog.beaconstac.com/2014/09/webinar-slides-how-to-choose-the-right-beacon-hardware-for-your-business/
+https://blog.beaconstac.com/2015/09/webinar-your-guide-to-planning-a-successful-beacon-pilot/
+!! https://kontakt.io/blog/supply-chain-problems-beacons-solve/
+!!! https://kontakt.io/resources/
+https://kontakt.io/blog/3-ways-rtls-can-enhance-employee-monitoring/
+
+https://www.octalsoftware.com/blog/cost-to-develop-e-commerce-mobile-app
+https://www.octalsoftware.com/blog/category/software-development-2
+
+
+
+
+

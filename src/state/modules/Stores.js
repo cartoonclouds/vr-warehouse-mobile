@@ -1,4 +1,6 @@
 
+import {_stores} from '../../api/api'
+
 export default {
 
     namespaced: true,

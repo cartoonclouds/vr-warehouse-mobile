@@ -1,4 +1,8 @@
 
+
+import {_pickingOrders} from '../../api/api'
+
+
 export default {
 
     namespaced: true,

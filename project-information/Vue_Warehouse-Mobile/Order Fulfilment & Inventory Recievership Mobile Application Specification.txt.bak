@@ -1,0 +1,182 @@
+
+Order Fulfilment & Inventory Recievership Mobile Application Specification
+==========================================================================
+[Samsung Galaxy S8 Tab]
+
+
+
+
+
+IDEAS [to be made coherant] -- MOST IDEAS WILL NEED A "JUSTIFICATION" SECTIONS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Don't hardcode labels/text - allow John to open txt file to change as will
+
+- After viewing available picks to choose - filter all others out, removes distractions, they only should be doing & contentrating on one tasks at a time (however provide icon to show again, ask M/D thoughts if resonable)
+
+- Simple, large, easy to use, icons
+
+- UI/UX (by the people who use it everyday), get THEIR IDEAS/SUGGUESTIONS/IMPROVEMENTS! ie, whats a common mistake that happens unintentionally (and suggestions by them on how to stop it happening?), what information is on the tablets that they (the pickers) never use/read ALSO what they commonly have to ask for/go to a PC?
+
+- Simplify login page by only showing available features depending on user/roles
+
+- provide fallback recovery - to varying degrees: one pick only? all picks logged in to? 
+
+- different orientation show different info?
+
+- for each product line show: (landscape?)
+	* Image of product
+	* Name
+	* Barcode / Carton Barcode
+	* Quantity to Pick (Quantity in location, after scan also show qty which should be left)
+
+- shrink/hide scanned items
+
+- different view options : GRID VIEW \ LIST VIEW : larger,box view \ line, detailed view
+
+- provide different modalities with change - quick vibrate if ok, two vibrates if problem
+
+- items MUST ALWAYS have a location - when picking scanning from location to "picking", on packing when scanning carton to "carton" (keep track of location)	
+	item location > picking trolly (have an ID?) > packing station > carton
+
+- make obvious when items scanned correctly, wrong item, wrong location (show somewhat at a glance difference to user) - turn green for correct location and green for the correct items, if both good slide down.
+	ie, https://www.youtube.com/watch?v=y3oaVwPtq8E		
+
+- for warehouse roles provide more grandular data re: what each picker is doing at that point in time (what orders on the go?, up to what point they are with them? daily statistics, etc.), with alerts after whatever defined thresholds (ie, with # of orders and pickers time delays) or internet is slow/down in there, [maybe] printer issues [if can talk with node-print], scheduled pickup reminders by customer or courier (if we know when they'll be in) -- some of these may have to be configurable to receiving alerts no *every* time -- 
+
+- do picking orders now need to be 'grouped' (by that i mean on the same page just sepeerated)
+
+
+
+
+
+- Research, describe & explain possible improvements to the methodology:
+	~ Discrete Order Picking, 
+	~ Zone Picking, 
+	~ Batch Picking, 
+	~ Cluster Picking, 
+	~ Wave Picking, ++++
+	(https://www.newcastlesys.com/blog/bid/329992/7-Excellent-Methods-to-Improve-Picking-and-Packing-Efficiencies)
+  ... and possibly provide the ability to implement. IE, easier prioritising from office (and easier to see) or providing Batch Picking
+	https://www.newcastlesys.com/blog/bid/329992/7-excellent-methods-to-improve-picking-and-packing-efficiencies
+	https://www.newcastlesys.com/blog/a-40-50-increase-in-picking-performance
+	http://www.cisco-eagle.com/blog/2014/02/12/quick-guide-to-order-picking-methods-productivity/
+	http://www.cisco-eagle.com/blog/2015/03/31/10-ways-to-improve-order-picking-productivity/
+	https://www.newcastlesys.com/order-picking-cart-guide
+	http://wiki.openbravo.com/wiki/Projects:Warehouse_picking/User_Guide	http://wiki.openbravo.com/wiki/Category:Developers_Guide	http://wiki.openbravo.com/wiki/User_Interface_Introduction	http://wiki.openbravo.com/wiki/Category:Concepts
+	
+	!!! https://en.wikipedia.org/wiki/Order_processing !!!
+	!!! http://www.cisco-eagle.com/blog/2017/10/06/the-best-3pls-are-invisible-to-customers/ !!!
+	!!! http://www.cisco-eagle.com/blog/category/order-picking/ !!!
+
+
+  - 
+
+https://developer.mozilla.org/en-US/docs/Games/Techniques/Control_mechanisms/Mobile_touch
+https://css-tricks.com/snippets/css/complete-guide-grid/
+
+
+grid to list
+https://codepen.io/adamdroid/pen/ZboYvb
+
+grid/list Vue
+https://codepen.io/frankhe/pen/bqgrLa
+
+
+
+menus/navigation
+https://medium.com/@soulless/top-8-mobile-navigation-menu-design-for-your-inspiration-8a2d925bffc0
+https://alty.co/blog/8-best-mobile-navigation-design-examples/
+https://speckyboy.com/innovative-mobile-app-navigation/
+!READ! https://www.smashingmagazine.com/2017/05/basic-patterns-mobile-navigation/
+!READ! https://www.nngroup.com/articles/hamburger-menus/
+		https://www.bruceclay.com/blog/mobile-friendly-navigation/
+!READ! https://material.io/design
+!READ! https://uxplanet.org/tab-bars-are-the-new-hamburger-menus-9138891e98f4
+https://codepen.io/RRoberts/pen/YpeJbK
+!READ! https://codepen.io/ahmadbassamemran/pen/XVJNMN
+https://codepen.io/electerious/pen/ZBQeOv (like when menu options page fades)	
+
+hamburgers
+https://www.webdesignerdepot.com/2017/08/5-smart-alternatives-to-the-hamburger-menu/
+https://codepen.io/erikterwan/pen/EVzeRP
+https://codepen.io/RRoberts/pen/ZBYaJr
+https://codepen.io/ahmadbassamemran/pen/VQwPGr
+
+
+footer/header/sidebar
+https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+https://www.w3schools.com/howto/howto_css_fixed_footer.asp
+https://www.w3schools.com/howto/howto_js_sidenav.asp
+https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp (hide on scroll)
+https://codepen.io/chriscoyier/pen/FAbpm
+
+
+css icons
+https://codepen.io/RRoberts/pen/LxZwQP
+https://codepen.io/RRoberts/pen/kXEjOW
+
+
+
+flex
+https://www.w3schools.com/css/css3_flexbox.asp
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container
+https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+
+TIMELINE
+https://codepen.io/pacMakaveli/pen/xGQEVg
+https://yoksel.github.io/flex-cheatsheet/#align-content
+
+
+pulse btn
+https://codepen.io/davidgilbertson/pen/yPKxwq
+
+
+svg icon library
+https://www.keycdn.com/blog/icon-library
+https://blog.marvelapp.com/hamburger-menu-alternatives-mobile-navigation/
+https://mobirise.com/responsive-menu/
+https://www.flaticon.com/most-downloaded
+https://marvelapp.com/enterprise?utm_source=hamburger-menu-alternatives-mobile-navigation&utm_medium=footer-enterprise-upsell&utm_campaign=marvel-blog-advertising&utm_content=enterpriseUpsell
+
+!! http://webdesignerwall.com/tutorials/four-elements-great-responsive-menus
+https://www.devteam.space/blog/mobile-navigation-menu-examples/
+
+https://1stwebdesigner.com/11-free-svg-icon-libraries-icon-fonts/
+https://www.keycdn.com/blog/icon-library
+
+css character icons https://codepen.io/solipsistacp/pen/uHbhI
+
+
+
+<nav class="view-switcher group">
+
+  <a id="grid-view" href="/?grid_type=grid" class="button button-dark active" title="Grid View">
+    <svg class="icon-grid">
+      <use xlink:href="#grid"></use>
+    </svg>
+  </a>
+
+  <a id="list-view" href="/?grid_type=list" class="button button-dark" title="List View">
+    <svg class="icon-menu">
+      <use xlink:href="#menu"></use>
+    </svg>
+  </a>
+
+
+</nav>
+
+
+
+https://demo.wcpos.com
+https://blog.capterra.com/articles/logistics-technology/
+
+
+
+http://desktop.arcgis.com/en/arcmap/10.3/map/page-layouts/essential-page-layout-vocabulary.htm
+http://desktop.arcgis.com/en/arcmap/10.3/main/map/a-quick-tour-of-arcmap.htm
+https://www.esri.com/en-us/arcgis/products/arcgis-online/overview
+https://www.esri.com/en-us/arcgis/products/apps-for-everyone/overview
+	

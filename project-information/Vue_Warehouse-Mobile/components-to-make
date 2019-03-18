@@ -1,0 +1,58 @@
+
+COMPONENTS TO MAKE
+******************
+
+- Navigation [entire, sticky, left]
+- Header [store\order information, maybe quick links]
+- Barcode scan input [include icon to open keypad]
+- Progress bar [progress with pick]
+- Body section [accordian of products]
+- Input enter passcode [entire screen]
+- Round progress circle [on list of orders to pick]
+
+
+
+As a picker...
+ ...what's on the page not required?
+ ...what's *not* on that is commonly required?
+ ...what's sometimes used but could be added to a menu?
+
+
+
+https://github.com/vuejs/awesome-vue
+https://cli.vuejs.org/guide/
+https://www.telerik.com/campaigns/kendo-ui/wp-planning-vue-app
+https://www.sitepoint.com/introduction-css-grid-layout-module/
+https://html.spec.whatwg.org/multipage/offline.html#offline
+
+
+https://html.spec.whatwg.org/multipage/forms.html#forms
+	autocomplete="off"
+https://html.spec.whatwg.org/multipage/dom.html#dom
+2018.jsconfau.com
+https://benfrain.com/css-performance-revisited-selectors-bloat-expensive-styles/
+https://calendar.perfplanet.com/2011/css-selector-performance-has-changed-for-the-better/
+https://developers.google.com/web/fundamentals/primers/async-functions
+https://www.sitepoint.com/es2018-whats-new/
+https://css-tricks.com/webkit-html5-search-inputs/
+
+https://mattallan.org/posts/modern-javascript-without-a-bundler/
+
+https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
+https://html.spec.whatwg.org/multipage/interaction.html#focus-management-apis
+https://html.spec.whatwg.org/multipage/interaction.html#autocapitalization
+
+https://www.geeksforgeeks.org/
+https://alistapart.com/article/the-design-of-code-organizing-javascript
+
+!!! https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements
+https://developers.google.com/web/fundamentals/web-components/customelements
+https://stackoverflow.com/questions/18623765/can-web-components-be-used-to-create-custom-input-elements
+https://stackoverflow.com/questions/42090882/how-to-make-an-html-form-validate-a-custom-htmlinputelement
+https://gist.github.com/AdaRoseCannon/60dc448b1124bcfb7be14209b8124f5c
+!!! https://github.com/SamsungInternet/blog/blob/master/content/posts/2018-01-23--Lessons-Learned--making-our-app-with-Web-Components/index.md
+https://samsunginter.net/vj-otg/docs/midi-controller.js.html
+
+
+BOOK
+https://github.com/getify/Functional-Light-JS

@@ -1,0 +1,64 @@
+
+https://matthiashager.com/complete-vuejs-application-tutorial
+https://forum.vuejs.org/t/structuring-very-large-applications/840/3
+https://github.com/chrisvfritz/vue-enterprise-boilerplate
+https://github.com/iamshaunjp/vuex-playlist/tree/master/src
+https://vuex.vuejs.org/guide/structure.html
+https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
+https://code-maze.com/creating-vuejs-project/
+https://itnext.io/how-to-structure-a-vue-js-project-29e4ddc1aeeb
+https://medium.com/@kevin_peters/learn-how-to-refactor-vue-js-single-file-components-on-a-real-world-example-501b3952ae49
+https://medium.com/3yourmind/large-scale-vuex-application-structures-651e44863e2f
+https://itnext.io/vue-custom-route-hooks-3f50cc30bb87
+https://medium.com/@sadickjunior/how-does-a-minimal-vuex-implementation-looks-like-find-out-c2c2e13619cb
+
+
+
+https://github.com/iamshaunjp/css-animations-playlist
+
+https://cssreference.io/transitions/
+
+https://codepen.io/tag/clouds/7/#
+
+
+
+
+
+<div class="progress single-insights-progress" style="display: block;">
+	<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 2%;"></div>
+</div>
+
+
+
+
+
+
+
+
+<span class="hamburger-menu"></span>
+
+
+.hamburger-menu {
+    padding-left: 1.25em;
+    position: relative;
+    height: 19px;
+    margin-right: 9px;
+    display: none;
+}
+
+.hamburger-menu:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.21em;
+    bottom: 0.21em;
+    width: 1em;
+    background: linear-gradient(
+            to bottom,
+            black, black 20%,
+            white 20%, white 40%,
+            black 40%, black 60%,
+            white 60%, white 80%,
+            black 80%, black 100%
+    );
+}

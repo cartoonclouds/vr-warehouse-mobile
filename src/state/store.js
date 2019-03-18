@@ -11,6 +11,7 @@ import User from './modules/User';
 
 
 const VuexStore = new Vuex.Store({
+    strict: process.env.NODE_ENV !== 'production',
     modules: {
         PickingOrders,
         Stores,
@@ -20,7 +21,11 @@ const VuexStore = new Vuex.Store({
     state: {},
     getters: {},
     mutations: {},
-    actions: {}
+    actions: {
+
+
+
+    }
 })
 
 
