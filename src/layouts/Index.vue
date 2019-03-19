@@ -1,9 +1,9 @@
 <template>
   <div id="app">
 
-    <responsive-nav></responsive-nav>
+    <responsive-nav/>
 
-    <router-view />
+    <router-view/>
 
     <!-- <footer-bar /> -->
 
@@ -36,6 +36,7 @@ export default {
 };
 </script>
 
+<!-- Global styles -->
 <style>
 html,
 body {

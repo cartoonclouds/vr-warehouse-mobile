@@ -10,7 +10,7 @@ export default {
     },
     getters: {
         get: (state) => (id) => {
-            return !id ? state.stores : state.stores.find(store => store.id == id);
+            return state.stores.find(store => store.id == id);
         },
         getAll: (state) => {
             return state.stores;

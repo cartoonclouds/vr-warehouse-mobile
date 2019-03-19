@@ -1,12 +1,12 @@
 <template>
     <div class="page">
         <header-mobile>
-            <span v-if="storeId && store">{{ store.store_name }} - {{ store.address.state }} - {{ store.address.postcode }}</span>
+            <span v-if="store">{{ store.store_name }} - {{ store.address.state }} - {{ store.address.postcode }}</span>
             <div class="estTime">
                 <!--Estimated Picking Time:-->
                 <span v-if="pickingOrder" style="margin-left:8px;">
                     {{ pickingOrder.estimated_time | formatDuration }}
-                    <div style="font-size:0.75em;line-height:0.8em;">Estimated completion: {{ pickingOrder.estimated_time | addMilliseconds | formatDateTime }}</div>
+                    <div pickingOrderstyle="font-size:0.75em;line-height:0.8em;">Estimated completion: {{ pickingOrder.estimated_time | addMilliseconds | formatDateTime }}</div>
                 </span>
             </div>
         </header-mobile>
@@ -32,15 +32,7 @@
                     </div>
                 </div>
 
-                <div class="progress">
-                    <div
-                        aria-valuemax="100"
-                        aria-valuemin="0"
-                        aria-valuenow="0"
-                        class="progress-bar progress-bar-striped"
-                        role="progressbar"
-                    >0%</div>
-                </div>
+                <progress-bar :progression="progressed"></progress-bar>
 
             </div>
 
@@ -56,93 +48,12 @@
             </div>
 
             <div class="accordion" id="picklist-products">
-                <div v-for="(product, idx) in products" :key="idx" class="card">
-                    <div
-                        :aria-controls="'collapse'+idx"
-                        aria-expanded="false"
-                        class="card-header row"
-                        :class="'product-'+product.barcode"
-                        :data-target="'#collapse'+idx"
-                        :id="'heading'+idx"
-                        role="button"
-                        @dblclick="openProductDetail(idx)"
-                    >
-                        <div class="col-3">
-                            <span @click="barcode = product.barcode" style="border-bottom: 1px dashed #000;">
-                                {{ product.barcode }}
-                            </span>
-                        </div>
-                        <div class="col-3"><small>{{ product.name }}</small></div>
-                        <div class="col-3 text-center">{{ product.location}}</div>
-                        <div class="col-3 text-right">
-                            <span class="badge badge-pill" :class="'badge-'+ ((product.quantity_scanned||0) <= product.stock_required ? 'primary' : 'warning')">
-                                {{ product.quantity_scanned || 0 }} / {{ product.stock_required }}
-                            </span>
-                            <div style="font-size:0.7em">({{ product.SOH }} SOH)</div>
-                        </div>
-                    </div>
-                    <div
-                        :aria-labelledby="'heading'+idx"
-                        class="collapse product-detail"
-                        data-parent="#picklist-products"
-                        :id="'collapse'+idx"
-                    >
-                        <div class="card-body">
-
-                            <div class="row">
-                                <div class="col-3">
-                                    <img src="https://cdn.vrdistribution.com.au/thumbs/200/a/r/arboretum-play-renegade-kit-cannot-be-sold-on-online-market-places--66960_f6975.jpg"
-                                         class="img-responsive" width="200">
-                                </div>
-
-                                <div class="col-sm-9">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <label>Barcode</label>
-                                            <p>810011720206</p>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label>Carton Barcode</label>
-                                            <p>810011720206</p>
-                                        </div>
-                                    </div>
-                                    <label>Picking Note</label>
-                                    <p>-</p>
-
-                                    <hr>
-
-                                    <div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <label>Primary Location</label>
-                                                <p>-</p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label>Previous Primary Location</label>
-                                                <p>-</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <label>Secondary Locations</label>
-                                                <table class="table table-condensed">
-                                                    <tbody></tbody>
-                                                </table>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label>Temp. Location</label>
-                                                <p>-</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
+                <product-row
+                        v-for="(product, idx) in products"
+                        :key="product.id"
+                        :product="product"
+                        @click-barcode="setBarcode"
+                ></product-row>
             </div>
 
         </main>
@@ -151,48 +62,63 @@
 
 <script>
     import BarcodeScanInput from '../components/BarcodeScanInput';
-    import {mapGetters, mapActions} from 'vuex';
+    import ProductRow from '../components/picking-orders/ProductRow';
+    import ProgressBar from '../components/ProgressBar';
+    import {mapGetters, mapActions, mapMutations, mapState} from 'vuex';
 
     export default {
         name: 'pick-order',
         props: ['id'],
         components: {
             BarcodeScanInput,
+            ProductRow,
+            ProgressBar
         },
         metaInfo() {
             return {
                 title: 'Picking Order #' + this.id,
             };
         },
+        watch: {
+        },
         computed: {
             pickingOrder() {
                 return this.$store.getters['PickingOrders/get'](this.id);
             },
             store() {
-                return this.$store.getters['Stores/get'](this.storeId);
+                return this.$store.getters['Stores/get'](this.pickingOrder.store_id);
             },
             products() {
-                return this.$store.getters['PickingOrders/getProductsById'](this.id);
+                //return this.$store.getters['PickingOrders/getProducts'](this.id);
+                return Object.values(this.pickingOrder.products);
+            },
+            progressed() {
+                let productsCount = this.products.reduce(function(total, product) {
+                    return total + (product.stock_required || 0);
+                }, 0);
+
+                let productsScanCount = this.products.reduce(function(total, product) {
+                    return total + (product.quantity_scanned || 0);
+                }, 0);
+
+
+                return productsScanCount === 0 ? 0 : Math.round((productsScanCount / productsCount) * 100);
             }
         },
         data() {
             return {
-                storeId: '',
                 barcode: null,
                 lastScanned: null,
             };
         },
         methods: {
-            ...mapGetters({
-                get: 'PickingOrders/get',
-            }),
             ...mapActions({
-                load: 'PickingOrders/load',
-                updateScanned: 'PickingOrders/updateQuantityScanned'
+                scanProduct: 'PickingOrders/scanProduct'
             }),
-            ...mapActions({
-                loadStore: 'Stores/load'
-            }),
+
+            setBarcode(barcode) {
+                this.barcode = barcode;
+            },
             submitScan(barcode) {
 
                 this.scannedQuantity = 1;
@@ -201,48 +127,46 @@
 
                 //productHeader.classList.add('scanned');
 
-                this.updateScanned({
+
+                this.scanProduct({
                     id: this.id,
                     barcode,
                     quantity: this.scannedQuantity
                 }).then((scannedProduct) => {
 
+                    console.log(scannedProduct);
+
                     this.lastScanned = scannedProduct;
 
                     this.barcode = null;
 
+
                 });
 
             },
-            openProductDetail(accordianIdx) {
 
-                let productDetailList = document.getElementsByClassName('product-detail');
-
-                for(let productDetail of productDetailList) {
-
-                    if(productDetail.id === ('collapse'+accordianIdx)) {
-                        productDetail.classList.toggle('show');
-                        continue;
-                    }
-
-                    productDetail.classList.remove('show');
-
-                }
-
-            }
         },
-
         mounted() {
 
-            this.load(this.id).then((pickingOrder) => {
-
-                this.storeId = pickingOrder.store_id;
-
-                this.loadStore(pickingOrder.store_id);
-
-            });
-
         },
+        /*beforeRouteEnter(to, from, next) {
+
+
+            $store.dispatch('PickingOrders/load', {id: to.params.id})
+                .then(pickingOrder => {
+
+                    $store.dispatch('Stores/load', {id: pickingOrder.store_id});
+
+                    next((vm) => {
+                        vm.storeId = pickingOrder.store_id
+                    });
+                    // check if order exists redirect
+                    // check if picked redirect to picked status page
+
+                });
+
+
+        },*/
         filters: {
             formatDuration(ms) { return moment.utc(ms).format('h [hours] mm [minutes] ss [seconds]'); },
             addMilliseconds(ms) { return moment().add(ms, 'ms'); }, // returns unix datetime
@@ -270,49 +194,6 @@
         margin: 0.5em 0 0.5em;
     }
 
-    .pickorder-header {
-        position: sticky;
-        top: 64px;
-        z-index: 888;
-        background-color: #FFF;
-        padding-bottom: 8px;
-    }
-
-    .card-header {
-        cursor: pointer;
-        padding: 18px;
-        padding-right: 26px;
-        font-size: 18px;
-        -webkit-user-select: none;
-        user-select: none;
-        background-color: #FFF;
-    }
-
-    .card:nth-child(odd) .card-header {
-        background-color: #f2f2f2;
-    }
-
-    .card-header.scanned {
-        opacity: 0.4;
-    }
-
-
-    .picklist-header {
-        font-weight: bold;
-        padding: 0 15px;
-    }
-
-    .progress {
-        height: 1.75rem;
-        font-size: 1.2rem;
-        border: 1px solid #ced4da;
-    }
-
-    .progress-bar {
-        min-width: 2%;
-        width: 2%;
-    }
-
     main h2 {
         font-size: 28px;
     }
@@ -325,6 +206,10 @@
     }
 
 
+    .picklist-header {
+        font-weight: bold;
+        padding: 0 15px;
+    }
 
     .barcode-input-header {
         display: flex;

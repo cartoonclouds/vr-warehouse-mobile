@@ -4,7 +4,7 @@
             <input
                 v-bind="$attrs"
                 @input="$emit('input', $event.target.value)"
-                @keyup.enter="$emit('scanned', $event.target.value)"
+                    @keyup.enter="$emit('scanned', $event.target.value)"
                 :placeholder="placeholder"
                 type="text"
                 ref="barcode"

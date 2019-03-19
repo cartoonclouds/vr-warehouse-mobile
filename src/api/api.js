@@ -18,10 +18,27 @@ const _products3 = {
 };
 
 
-export const _pickingOrders = {
-    '244322': {id: 244322, store_id: 24422, products: _products, estimated_time: 9061000}, // 2 hours, 31 minutes and 1 seconds
-    '345345': {id: 345345, store_id: 345345, products: _products2, estimated_time: 2411000}, // 40 minutes and 11 seconds
-    '125345': {id: 125345, store_id: 23423, products: _products3, estimated_time: 8492000} // 2 hours, 21 minutes and 32 seconds
+export const pickingOrderAjaxRequest = (id) => {
+    let po = {
+        '244322': {id: 244322, store_id: 24422, products: _products, estimated_time: 9061000}, // 2 hours, 31 minutes and 1 seconds
+        '345345': {id: 345345, store_id: 345345, products: _products2, estimated_time: 2411000}, // 40 minutes and 11 seconds
+        '125345': {id: 125345, store_id: 23423, products: _products3, estimated_time: 8492000} // 2 hours, 21 minutes and 32 seconds
+    };
+
+    return new Promise((resolve, reject) => {
+
+        setTimeout( () => {
+            if (id) {
+                resolve(po[id]);
+            }
+
+            resolve(po);
+        }, 1000);
+
+    });
+
+
+
 };
 
 

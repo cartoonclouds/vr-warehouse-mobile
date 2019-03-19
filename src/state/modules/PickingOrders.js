@@ -1,26 +1,28 @@
 
 
-import {_pickingOrders} from '../../api/api'
+import {pickingOrderAjaxRequest} from '../../api/api'
+import Vue from "vue";
 
 
 export default {
-
     namespaced: true,
+
     state: {
         pickingOrders: {}
     },
     getters: {
+        stateLoaded: (state) => { return Object.keys(state.pickingOrders).length > 0 },
         get: (state) => (id) => {
             return state.pickingOrders[id]
         },
         getByStore: (state) => (id) => {
             return state.pickingOrders.find(pickingOrder => pickingOrder.store_id == id)
         },
-        getProductsById: (state) => (id) => {
-            let products = state.pickingOrders[id] || {products:{}}; // this is required due to race condition
-            return Object.values(products.products)
+
+        getProducts: (state) => (id) => {
+            return state.pickingOrders[id];
         },
-        getProductById: (state) => (id, productId) => {
+        getProduct: (state) => (id, productId) => {
             return state.pickingOrders[id].products[productId]
         },
         getProductByBarcode: (state) => (id, barcode) => {
@@ -43,65 +45,83 @@ export default {
             state.pickingOrders = pickingOrder;
 
         },
-        update(state, payload) {
+        update(state, {idx, pickingOrder}) {
 
-            state.pickingOrders[payload.idx] = payload.pickingOrder;
+            state.pickingOrders[idx] = pickingOrder;
+            //state.pickingOrders = Object.assign({}, state.pickingOrders, pickingOrder);
+            //Vue.set(state.pickingOrders, idx, pickingOrder);
 
         },
-        updateProduct(state, payload) {
+        updateProduct(state, {idx, productIdx, product}) {
 
-            state.pickingOrders[payload.idx] = payload.pickingOrder;
+            state.pickingOrders[idx].products[productIdx] = product;
+            //state.pickingOrders = Object.assign({}, state.pickingOrders[idx].products[productIdx], product);
+
+            //Vue.set(state.pickingOrders[idx].products[productIdx], 'quantity_scanned', product.quantity_scanned);
+
 
         }
     },
     actions: {
-        load( {commit, state, getters}, id) {
+        async load( {commit, state, getters}, {id}) {
 
-            if(id) {
-
-                commit('set', _pickingOrders);
+            if(getters.stateLoaded) {
 
                 return getters.get(id);
 
-            } else {
-
-                setTimeout(() => {
-
-                    commit('set', _pickingOrders);
-
-                }, 2000);
-
             }
+
+
+            await pickingOrderAjaxRequest(id)
+                .then(response => {
+
+                    commit('update', { // load the picking order
+                        idx: id,
+                        pickingOrder: response
+                    });
+
+
+                    return response; // return the loaded picking order
+
+            });
+
             //https://stackoverflow.com/questions/40165766/returning-promises-from-vuex-actions
 
             // axios call to get all picking orders
 
             /*return new Promise((resolve, reject) => {
-
-
-
                 resolve(_products);
-
             });*/
 
         },
-        async updateQuantityScanned( {commit, state, getters}, {id, barcode, quantity} ) {
+        scanProduct( {commit, state, getters}, {id, barcode, quantity} ) {
 
 
-            let product = getters.getProductByBarcode(id, barcode);
+            return new Promise((resolve, reject) => {
 
-            if(!product) return await true;
-
-
-            if(!product.quantity_scanned) {
-                product = { ...product, quantity_scanned: quantity }
-            } else {
-                product.quantity_scanned += quantity;
-            }
+                let product = getters.getProductByBarcode(id, barcode);
 
 
-            return await Vue.$set(state.pickingOrders[id].products, product.id, product);
+                if (!product.hasOwnProperty('quantity_scanned')) {
 
+                    Vue.set(product, 'quantity_scanned', quantity)
+
+                } else {
+
+                    product.quantity_scanned += quantity;
+
+                }
+
+
+                commit('updateProduct', {
+                    idx: id,
+                    productIdx: product.id,
+                    product
+                })
+
+                resolve(product);
+
+            });
 
 
         }

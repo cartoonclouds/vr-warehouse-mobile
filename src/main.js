@@ -18,15 +18,18 @@ Vue.use(PortalVue);
 Vue.use(VueAxios, axios);
 
 
+
 // import global components
 Vue.component("modal", require('./components/Modal').default);
 Vue.component("header-mobile", require('./components/Header').default);
+
 
 
 // import Bootstrap 4.0 & FontAwesome (TODO: Change below to min version)
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle'
 import '@fortawesome/fontawesome-free/css/all.css'
+
 
 
 // configure settings
@@ -39,19 +42,23 @@ Vue.axios.defaults.headers.common = {
 };
 
 /*
-	<script>
-		window.csrfToken =  '{{csrf_token()}}';
-		window.pusherKey =  '{{config('broadcasting.connections.pusher.key')}}';
-	</script>
+window.__INITIAL_STATE__ = '{ "cars": [ { "id": 1, "name": "Buick" } ] }';
+window.csrfToken =  '{{csrf_token()}}';
+window.pusherKey =  '{{config('broadcasting.connections.pusher.key')}}';
 
-	PusherJS
-	laravel-echo
-	  https://www.npmjs.com/package/vue-echo-laravel
+
+PusherJS
+laravel-echo
+  https://www.npmjs.com/package/vue-echo-laravel
 
 let initialState = JSON.parse(window.__INITIAL_STATE__);
 
 console.log(initialState)
  */
+
+// https://github.com/chrisvfritz/vue-enterprise-boilerplate/blob/master/src/router/index.js
+// https://github.com/vuejs/vue-router/tree/dev/examples
+
 
 
 //import tool from './plugins/Vue-DevTools';
