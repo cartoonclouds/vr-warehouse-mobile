@@ -90,14 +90,20 @@
             },
             products() {
                 //return this.$store.getters['PickingOrders/getProducts'](this.id);
-                return Object.values(this.pickingOrder.products);
+                //return Object.values(this.pickingOrder.products);
+                return this.pickingOrder.products;
             },
             progressed() {
-                let productsCount = this.products.reduce(function(total, product) {
+
+                let productList = Object.values(this.products);
+
+                console.log('progressed');
+
+                let productsCount = productList.reduce(function(total, product) {
                     return total + (product.stock_required || 0);
                 }, 0);
 
-                let productsScanCount = this.products.reduce(function(total, product) {
+                let productsScanCount = productList.reduce(function(total, product) {
                     return total + (product.quantity_scanned || 0);
                 }, 0);
 
@@ -127,7 +133,6 @@
 
                 //productHeader.classList.add('scanned');
 
-
                 this.scanProduct({
                     id: this.id,
                     barcode,
@@ -147,6 +152,7 @@
 
         },
         mounted() {
+            
 
         },
         /*beforeRouteEnter(to, from, next) {

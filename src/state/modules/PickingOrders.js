@@ -55,10 +55,6 @@ export default {
         updateProduct(state, {idx, productIdx, product}) {
 
             state.pickingOrders[idx].products[productIdx] = product;
-            //state.pickingOrders = Object.assign({}, state.pickingOrders[idx].products[productIdx], product);
-
-            //Vue.set(state.pickingOrders[idx].products[productIdx], 'quantity_scanned', product.quantity_scanned);
-
 
         }
     },
@@ -101,16 +97,8 @@ export default {
 
                 let product = getters.getProductByBarcode(id, barcode);
 
+                Vue.set(product, 'quantity_scanned', quantity)
 
-                if (!product.hasOwnProperty('quantity_scanned')) {
-
-                    Vue.set(product, 'quantity_scanned', quantity)
-
-                } else {
-
-                    product.quantity_scanned += quantity;
-
-                }
 
 
                 commit('updateProduct', {
